@@ -1,3 +1,11 @@
+<?php 
+use yii\bootstrap\Modal;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -27,131 +35,58 @@
           <th>Статус</th>
           <th>Отчёт</th>
         </tr>
-        <tr>
-          <td>Общество с ограниченной ответственностью "Тандем"</td>
-          <td>77399924482</td>
-          <td>Для ООО</td>
-          <td class="status-error">Ошибка</td>
+        <?php foreach($table_data as $field): ?>
+          <tr>
+          <td><?= $field->organization_name ?></td>
+          <td><?= $field->INN ?></td>
+          <td><?= $field->parser_version ?></td>
+          <td class="status-error"><?= $field->status ?></td>
           <td>
-            <div class="btn modal-open"  id="show-btn">Посмотреть</div>
+            <div class="btn modal-open"  id="show-btn">Посмотреть</div> 
           </td>
         </tr>
-        <tr>
-          <td>Общество с ограниченной ответственностью "Арбуз"</td>
-          <td>77399924484</td>
-          <td>Для ООО</td>
-          <td class="status-success">Верно</td>
-          <td>
-            <div class="btn modal-open" id="show-btn">Посмотреть</div>
-          </td>
-        </tr>
+        <?php endforeach;?>
       </table>
     </div>
 
     <div class="btn-wrapper">
-      <div class="btn modal-open" id="check-btn">Новая проверка</div>
-    </div>
+<?php
+    Modal::begin([
+      'header' => '<h2>Новая проверка</h2>',
+      'toggleButton' => [
+          'label' => 'Новая проверка',
+          'tag' => 'button',
+          'class' => 'btn btn-success',
+      ],
+  ]);
+?>
+      <?php $form = ActiveForm::begin(['id' => 'contact-form', 'method'=>'post']); ?>
+      <?= $form->field($model, 'INN')->textInput(['placeholder'=>'Введите ИНН организации'])->label(false); ?>
+      <?= $form->field($model, 'organization_name')->textInput(['placeholder'=>'Введите полное наименование организации'])->label(false); ?>
+      <?= $form->field($model, 'organization_name_short')->textInput(['placeholder'=>'Введите сокращенное наименование организации'])->label(false); ?>
+      <?= $form->field($model, 'director_fullname')->textInput(['placeholder'=>'Введите ФИО руководителя организации'])->label(false); ?>
+      <?= $form->field($model, 'address')->textInput(['placeholder'=>'Введите юр. адрес организации'])->label(false); ?>
+      <?= $form->field($model, 'parser_version')->dropDownList([
+        'placeholder'=>'Выберите версию парсера',
+      'Для ООО' => 'Для ООО',
+      'Для ИП' => 'Для ИП',
+      'Для АО'=>'Для АО',
+      'Для ПАО'=>'Для ПАО'
+    ])->label(false); ?>
+    
 
-    <div class="modal-fade" id="modal-show">
-      <div class="modal modal-show">
-        <div class="modal-title">Отчет о проверке</div>
-        <div class="table-wrapper">
-          <table class="table">
-            <tr>
-              <th>Наименование документа</th>
-              <th>Проверка наличия документа</th>
-              <th>Проверка текста документа фильтром</th>
-              <th>Отчёт</th>
-            </tr>
-            <tr>
-              <td>Устав</td>
-              <td class="status-error">Найдено</td>
-              <td class="status-error">Ошибка</td>
-              <td>
-                <div class="btn modal-open" id="show-btn-2">Посмотреть</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Устав</td>
-              <td class="status-error">Найдено</td>
-              <td class="status-error">Ошибка</td>
-              <td>
-                <div class="btn modal-open" id="show-btn-2">Посмотреть</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Устав</td>
-              <td class="status-error">Найдено</td>
-              <td class="status-error">Ошибка</td>
-              <td>
-                <div class="btn modal-open" id="show-btn-2">Посмотреть</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Устав</td>
-              <td class="status-error">Найдено</td>
-              <td class="status-error">Ошибка</td>
-              <td>
-                <div class="btn modal-open" id="show-btn-2">Посмотреть</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Устав</td>
-              <td class="status-error">Найдено</td>
-              <td class="status-error">Ошибка</td>
-              <td>
-                <div class="btn modal-open" id="show-btn-2">Посмотреть</div>
-              </td>
-            </tr>
-          </table>
+  <div class="form-group">
+      <?= Html::submitButton('Проверить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+  </div>
+
+  <?php ActiveForm::end(); ?>
+
+<?php Modal::end(); ?>
+  </div>
+
+  <!--  Проверка документов -->
+  
         </div>
-        <a class="close-btn btn">Закрыть</a>
-      </div>
-    </div>
-
-    <div class="modal-fade" id="modal-check">
-      <div class="modal">
-        <div class="modal-title">Новая проверка</div>
-        <div class="form">
-          <input class="input" type="text" placeholder="Введите ИНН организации">
-          <input class="input" type="text" placeholder="Введите полное наименование организации">
-          <input class="input" type="text" placeholder="Введите сокращенное наименование организации">
-          <input class="input" type="text" placeholder="Введите ФИО руководителя организации">
-          <input class="input" type="text" placeholder="Введите юр. адрес организации">
-          
-          <!-- select -->
-
-          <label id="img_category_label" class="field" for="img_category" data-value="">
-            <span>Версия парсера</span>
-            <div id="img_category" class="psuedo_select" name="img_category">
-              <span class="selected"></span>
-              <ul id="img_category_options" class="options">
-                <li class="option" data-value=" opt_1">Для ООО</li>
-                <li class="option" data-value=" opt_2">Для ИП</li>
-                <li class="option" data-value=" opt_3">Для АО</li>
-                <li class="option" data-value=" opt_4">Для ПАО</li>
-              </ul>
-            </div>
-          </label>
-
-          <!-- select -->
- 
-          <div class="example-2">
-            <div class="form-group">
-              <input type="file" name="file" id="file" class="input-file">
-              <label for="file" class="btn btn-tertiary js-labelFile">
-                <i class="icon fa fa-check"></i>
-                <span class="js-fileName">Загрузить файл</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="bottom-btn-block">
-          <div class="bottom-btn">Проверить</div>
-          <a class="modal-close bottom-btn">Отменить</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -12,7 +12,6 @@ use yii\helpers\Html;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css">
   <title>Панель администратора</title>
 </head>
 
@@ -223,8 +222,8 @@ use yii\helpers\Html;
   </div>
   </div>
   
-  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-  <script src="js/main.js"></script><script>
+
+  <script>
       $(".ooo-table").show();
           $(".pao-table").hide();
           $(".ip-table").hide();
