@@ -12,6 +12,8 @@ use yii\helpers\Html;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/select.css">
+  <link rel="stylesheet" href="css/index.css?v=2">
   <title>Панель администратора</title>
 </head>
 
@@ -24,6 +26,38 @@ use yii\helpers\Html;
       <div class="aside-block">
       <a class="btn" href="/admin">Настройка</a>
         <a class="btn" href="/users">Пользователи</a>
+        <?php
+    Modal::begin([
+        'header' => '<h2>Добавить документ</h2>',
+        'toggleButton' => [
+            'label' => 'Добавить документ',
+            'tag' => 'button',
+            'class' => 'btn',
+        ],
+    ]);
+?>
+ <?php $form = ActiveForm::begin(['id' => 'contact-form', 'method'=>'post']); ?>
+ 
+ <?= $form->field($newmodel, 'document')->textInput() ?>
+ <?= $form->field($newmodel, 'mark_words')->textInput() ?>
+ <?= $form->field($newmodel, 'mark_fields')->textInput() ?>
+ <?= $form->field($newmodel, 'organization_type')->dropDownList([
+        'placeholder'=>'Выберите версию парсера',
+      'ООО' => 'Для ООО',
+      'ИП' => 'Для ИП',
+      'АО'=>'Для АО',
+      'ПАО'=>'Для ПАО'
+    ])->label(false); ?>
+
+ <div class="form-group">
+     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+ </div>
+
+ <?php ActiveForm::end(); ?>
+
+<?php
+Modal::end();
+?>
       </div>
       <div class="right-block">
         <div class="top-panel">
@@ -61,7 +95,7 @@ use yii\helpers\Html;
  
     <?= $form->field($model, 'mark_words')->textInput() ?>
     <?= $form->field($model, 'mark_fields')->textInput() ?>
-    <?= $form->field($model, 'selector')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
  
     <div class="form-group">
@@ -104,10 +138,10 @@ use yii\helpers\Html;
     ]);
 ?>
     <?php $form = ActiveForm::begin(['id' => 'contact-form', 'method'=>'post']); ?>
- 
+
     <?= $form->field($model, 'mark_words')->textInput() ?>
     <?= $form->field($model, 'mark_fields')->textInput() ?>
-    <?= $form->field($model, 'selector')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
  
     <div class="form-group">
@@ -153,7 +187,7 @@ use yii\helpers\Html;
  
     <?= $form->field($model, 'mark_words')->textInput() ?>
     <?= $form->field($model, 'mark_fields')->textInput() ?>
-    <?= $form->field($model, 'selector')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
  
     <div class="form-group">
@@ -200,7 +234,7 @@ use yii\helpers\Html;
  
     <?= $form->field($model, 'mark_words')->textInput() ?>
     <?= $form->field($model, 'mark_fields')->textInput() ?>
-    <?= $form->field($model, 'selector')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
  
     <div class="form-group">
@@ -221,7 +255,9 @@ use yii\helpers\Html;
     </div>
   </div>
   </div>
-  
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="js/select.js"></script>
+  <script src="js/main.js"></script>
 
   <script>
       $(".ooo-table").show();

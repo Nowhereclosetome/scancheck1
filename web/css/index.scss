@@ -71,6 +71,14 @@ $input-background: #ebebeb;
 /* ====================   MODAL   ==================== */
 
 
+#modal-admin-change .modal {
+  height: 612px;
+}
+
+#modal-admin-settings .modal {
+  height: 335px!important;
+}
+
 .modal-fade {
   display: none;
 }
@@ -121,6 +129,17 @@ $input-background: #ebebeb;
   }
 }
 
+.modal-close {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 100%;
+  margin-bottom: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .modal-title {
   width: 100%;
   padding-top: 24px;
@@ -136,7 +155,7 @@ $input-background: #ebebeb;
 .bottom-btn-block {
   display: flex;
   width: 100%;
-  margin-top: 40px;
+  
 
   .bottom-btn {
     font-size: 18px;
@@ -165,6 +184,11 @@ $input-background: #ebebeb;
 }
 
 /* ====================   INPUT FILE   ==================== */
+
+.example-2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .example-2 .btn-tertiary {
   color: white;
@@ -199,6 +223,20 @@ $input-background: #ebebeb;
 .example-2 .input-file+.js-labelFile.has-file .icon:before {
   content: "\f00c";
   color: #5AAC7B
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 20px !important;
+  border: none;
+  outline: none;
+  font-family: 'Ubuntu';
+  font-size: 15px;
+  margin-bottom: 10px;
+  background-color: $input-background;
+  padding: 10px 15px;
+  border-radius: 25px;
 }
 
 /* ====================   ADMIN PAGE   ==================== */
@@ -251,6 +289,17 @@ $input-background: #ebebeb;
             text-decoration: underline;
           }
         }
+      }
+    }
+  }
+
+  #modal-admin-settings {
+    
+    .modal {
+      height: 394px;
+      
+      .form {
+        padding: 30px;
       }
     }
   }
@@ -369,19 +418,47 @@ $input-background: #ebebeb;
       flex-direction: column;
       padding: 20px 50px 0;
       margin-top: 20px;
+    }
+  }
 
-      .input {
-        box-sizing: border-box;
+  .modal-show-2 {
+    width: 900px!important;
+    margin-bottom: 100px;
+    border-top-right-radius: 0px;
+    overflow: auto;
+    height: 100%!important;
+    margin-left: -450px;
+
+    .modal-title {
+      border-top-right-radius: 0px;
+      display: flex;
+      height: 80px;
+      margin-top: 0;
+      padding-top: 0;
+
+      div {
+        width: 75%;
+        padding-top: 25px;
+      }
+
+      a {
+        width: 25%;
+        margin: 0;
+        font-size: 30px;
+        font-weight: normal;
+        border-radius: 25px 0 0 25px;
+        padding-top: 25px;
+        height: 80px!important;
+      }
+    }
+    .modal-main {
+      padding: 40px;
+
+      line-height: 30px;
+
+      img {
         width: 100%;
-        margin-bottom: 20px !important;
-        border: none;
-        outline: none;
-        font-family: 'Ubuntu';
-        font-size: 15px;
-        margin-bottom: 10px;
-        background-color: $input-background;
-        padding: 10px 15px;
-        border-radius: 25px;
+        margin-top: 20px;
       }
     }
   }

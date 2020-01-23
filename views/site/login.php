@@ -1,41 +1,112 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
-
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
-$this->title = 'Login';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V8</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				
+			<?php $form = ActiveForm::begin([
+					'class' => 'login100-form validate-form p-l-55 p-r-55 p-t-178',
+				]); ?>
+<span class="login100-form-title">
+						Авторизация
+					</span>
+					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'input100'])->label(false) ?>
+					<?= $form->field($model, 'password')->passwordInput(['class' => 'input100'])->label(false) ?>
+						<?= $form->field($model, 'rememberMe')->checkbox([
+							'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+						]) ?>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'fieldConfig' => [
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+					<div class="form-group">
+						<div class="container-login100-form-btn">
+							<?= Html::submitButton('Войти', ['class' => 'login100-form-btn', 'name' => 'login-button']) ?>
+						</div>
+					</div>
+					<div class="flex-col-c p-t-170 p-b-40">
+					<?= Html::a('Зарегистрироваться','/register', ['class' => 'txt3', 'name' => 'login-button']) ?>
+					</div>
+				<?php ActiveForm::end(); ?>
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+					<span class="login100-form-title">
+						Авторизация
+					</span>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label(false) ?>
-<br>
-        <?= $form->field($model, 'password')->passwordInput()->label(false) ?>
-<br>
-            <?= $form->field($model, 'rememberMe')->checkbox([
-                'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            ]) ?>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+						<input class="input100" type="text" name="username" placeholder="Логин">
+						<span class="focus-input100"></span>
+					</div>
 
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
+					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
+						<input class="input100" type="password" name="pass" placeholder="Пароль">
+						<span class="focus-input100"></span>
+					</div>
 
-    <?php ActiveForm::end(); ?>
-    <?= Html::a('Зарегистрироваться','/register', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+					<div class="container-login100-form-btn" style="margin-top: 16px;">
+						<button class="login100-form-btn">
+							Войти
+						</button>
+					</div>
 
-</div>
+					<div class="flex-col-c p-t-170 p-b-40">
+						
+
+						<a href="register.html" class="txt3">
+							Регистрация
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>

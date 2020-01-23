@@ -12,6 +12,7 @@ use app\models\RegisterForm;
 use app\models\LoginForm;
 use app\models\User;
 use app\models\ContactForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -66,8 +67,13 @@ class SiteController extends Controller
             $table_data = Check::find()->all();
             $model = new Check();
             if($model->load(Yii::$app->request->post())){
-                $model->save();
-                return $this->refresh();
+               $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');  
+               if($model->validate()){
+                    $model->save();
+                    if($model->upload()){   
+                        return $this->refresh();
+                    }
+                }
             }
             return $this->render('index', ['model'=>$model, 'table_data'=>$table_data]);
         }

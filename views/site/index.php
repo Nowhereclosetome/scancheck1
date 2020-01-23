@@ -15,7 +15,7 @@ use yii\helpers\Html;
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index.css?v=2">
   <link rel="stylesheet" href="css/select.css">
   <title>Панель менеджера</title>
 </head>
@@ -73,7 +73,8 @@ use yii\helpers\Html;
       'Для АО'=>'Для АО',
       'Для ПАО'=>'Для ПАО'
     ])->label(false); ?>
-    
+        <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true]) ?>
+
 
   <div class="form-group">
       <?= Html::submitButton('Проверить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

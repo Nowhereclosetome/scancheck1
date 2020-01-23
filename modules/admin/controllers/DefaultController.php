@@ -25,16 +25,22 @@ class DefaultController extends Controller
                 $ip_fields = Docsconfig::findAll(['organization_type'=>'ИП']);
                 $ao_fields = Docsconfig::findAll(['organization_type'=>'АО']);
                 $pao_fields = Docsconfig::findAll(['organization_type'=>'ПАО']);
-
-                if(Yii::$app->request->post()){
-                    $writable = Docsconfig::findOne(['selector'=>Yii::$app->request->post("Docsconfig")["selector"]]);
+                $newDocConfig = new Docsconfig();
+                if(Yii::$app->request->post() and !isset(Yii::$app->request->post("Docsconfig")["document"])){
+                    $writable = Docsconfig::findOne(['id'=>Yii::$app->request->post("Docsconfig")["id"]]);
                     
                     $writable->mark_words = Yii::$app->request->post("Docsconfig")["mark_words"];
                     $writable->mark_fields = Yii::$app->request->post("Docsconfig")["mark_fields"];
-                    $writable->save(false);
+                    if($writable->validate()){
+                        $writable->save(false);
+                        return $this->redirect('');
+                    }
+                }
+                if($newDocConfig->load(Yii::$app->request->post())){
+                  $newDocConfig->save();
                     return $this->redirect('');
                 }
-                return $this->render('index', ['models'=>$fields, 'ip_models'=>$ip_fields, 'ao_models'=>$ao_fields, 'pao_models'=>$pao_fields]);
+                return $this->render('index', ['newmodel'=>$newDocConfig,'models'=>$fields, 'ip_models'=>$ip_fields, 'ao_models'=>$ao_fields, 'pao_models'=>$pao_fields]);
         }   
         else{
             throw new ForbiddenHttpException('Недостаточно полномочий для входа в панель администратора');
