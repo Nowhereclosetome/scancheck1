@@ -71,6 +71,10 @@ class SiteController extends Controller
                if($model->validate()){
                     $model->save();
                     if($model->upload()){   
+                        #Check will be here
+                        $featureDict = [
+                            'Полное название организации'=>$model->organization_name,
+                        ];
                         return $this->refresh();
                     }
                 }

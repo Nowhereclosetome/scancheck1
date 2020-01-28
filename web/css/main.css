@@ -207,13 +207,12 @@ iframe {
   text-align: center;
 
   display: block;
-  position: absolute;
   width: 100%;
-  top: 0;
-  left: 0;
+
   background-color: #57b846;
   padding-top: 50px;
   padding-bottom: 39px;
+  margin-bottom: 40px;
 }
 
 /*------------------------------------------------------------------
@@ -231,9 +230,7 @@ iframe {
   font-family: Ubuntu-Bold;
   font-size: 15px;
   color: #1b3815;
-  line-height: 1.2;
-
-  position: relative;
+  line-height: 1.2; 
   display: block;
   width: 100%;
   height: 55px;
@@ -316,7 +313,10 @@ iframe {
   background-color: #1b3815;
 }
 
-
+.form-group{
+  padding-left:50px;
+  padding-right: 50px;
+}
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 

@@ -27,7 +27,7 @@ use yii\helpers\Html;
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=4">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -42,8 +42,8 @@ use yii\helpers\Html;
 <span class="login100-form-title">
 						Авторизация
 					</span>
-					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'input100'])->label(false) ?>
-					<?= $form->field($model, 'password')->passwordInput(['class' => 'input100'])->label(false) ?>
+					<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'input100', 'placeholder' => 'Логин'])->label(false) ?>
+					<?= $form->field($model, 'password')->passwordInput(['class' => 'input100', 'placeholder' => 'Пароль'])->label(false) ?>
 						<?= $form->field($model, 'rememberMe')->checkbox([
 							'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
 						]) ?>
@@ -54,38 +54,10 @@ use yii\helpers\Html;
 						</div>
 					</div>
 					<div class="flex-col-c p-t-170 p-b-40">
-					<?= Html::a('Зарегистрироваться','/register', ['class' => 'txt3', 'name' => 'login-button']) ?>
+					<?= Html::a('Регистрация','/register', ['class' => 'txt3', 'name' => 'login-button']) ?>
 					</div>
 				<?php ActiveForm::end(); ?>
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-					<span class="login100-form-title">
-						Авторизация
-					</span>
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" name="username" placeholder="Логин">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100" type="password" name="pass" placeholder="Пароль">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="container-login100-form-btn" style="margin-top: 16px;">
-						<button class="login100-form-btn">
-							Войти
-						</button>
-					</div>
-
-					<div class="flex-col-c p-t-170 p-b-40">
-						
-
-						<a href="register.html" class="txt3">
-							Регистрация
-						</a>
-					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
